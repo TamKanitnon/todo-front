@@ -1,0 +1,50 @@
+<app-header [menu]="false" [name]="email"></app-header>
+<div class="container py-4">
+    <div class="row text-center">
+        <div class="col-6">
+            <button mat-raised-button color="accent" (click)="openDialog()">CREATE NEW TODO</button>
+        </div>
+        <div class="col-6">
+            <mat-form-field>
+            <mat-label>Select a status</mat-label>
+            <mat-select (selectionChange)="filterChanged($event)">
+                <mat-option>All</mat-option>
+                <mat-option value="COMPLETED">Completed</mat-option>
+                <mat-option value="IN_PROGRESS">In Progress</mat-option>
+                <mat-option value="OPEN">Open</mat-option>
+            </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-6 offset-3">
+            <ng-container *ngFor="let todo of todos; let i=index">
+                <mat-card class="my-3">
+                    <h5 style="position: absolute; right: 10px; top: 15px">{{todo.create}}</h5>
+                    <mat-card-title class="p-2 text-dark">{{todo.title}}</mat-card-title>
+                    <mat-card-content class="p-2 text-primary d-flex flex-column">
+                    <div>
+                        <p class="lead">{{todo.description}}</p>
+                    </div>
+                    <div class="d-flex align-items-center my-3">
+                        <div>
+                            <mat-form-field>
+                                <mat-label>Select a status</mat-label>
+                                <mat-select [(value)]="todo.status" (selectionChange)="statusChanged(todo.id, todo.status)">
+                                    <mat-option value="COMPLETED">Completed</mat-option>
+                                    <mat-option value="IN_PROGRESS">In Progress</mat-option>
+                                    <mat-option value="OPEN">Open</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <span class="spacer"></span>
+                        <mat-icon color="warn" style="cursor:pointer;" (click)="remove(todo.id, i)">delete</mat-icon>
+                    </div>
+                    </mat-card-content>
+                </mat-card>
+            </ng-container>
+        </div>
+    </div>
+</div>
+
