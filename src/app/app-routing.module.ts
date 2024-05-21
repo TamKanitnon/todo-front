@@ -7,6 +7,11 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
+    path: '**',
+    pathMatch: 'full',
+    redirectTo: ''
+  },
+  {
     path: '',
     component: HomeComponent
   },
@@ -21,11 +26,6 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent
-  },
-  {
-    path: '**',
-    pathMatch: 'full',
-    redirectTo: ''
   }
 ];
 
