@@ -21,6 +21,7 @@ import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
+import { EditComponent } from './components/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { HttpClientModule } from '@angular/common/http';
     RegisterComponent,
     DashboardComponent,
     HeaderComponent,
-    TodoComponent
+    TodoComponent,
+    EditComponent,
   ],
   imports: [
     BrowserModule,

@@ -4,14 +4,14 @@ import { MatDialog } from '@angular/material/dialog';
 import { DatapassService } from 'src/app/services/datapass.service';
 
 @Component({
-  selector: 'app-todo',
-  templateUrl: './todo.component.html',
-  styleUrls: ['./todo.component.scss']
+  selector: 'app-edit',
+  templateUrl: './edit.component.html',
+  styleUrls: ['./edit.component.scss']
 })
-export class TodoComponent {
+export class EditComponent {
   todo = {
-    title: '',
-    description: '',
+    title: this.datapass.edit.title,
+    description: this.datapass.edit.description
   }
 
   constructor(
@@ -24,12 +24,12 @@ export class TodoComponent {
     this.dialog.closeAll();
   }
 
-  async create() {
+  async editTitle() {
     if (this.todo.title === '') {
       this.dialog.closeAll();
       return;
     }
-    const request: any = await this.http.post(`${this.datapass.url}/todos`, this.todo, {
+    const request: any = await this.http.patch(`${this.datapass.url}/todos/edit/${this.datapass.edit.id}`, this.todo, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
       }

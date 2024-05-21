@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSelectChange } from '@angular/material/select';
+import { EditComponent } from 'src/app/components/edit/edit.component';
 import { TodoComponent } from 'src/app/components/todo/todo.component';
 import { DatapassService } from 'src/app/services/datapass.service';
 
@@ -37,6 +38,17 @@ export class DashboardComponent {
     }).toPromise();
     console.log(request);
     this.downloadData();
+  }
+
+  async editTitle(id: string, title: string, description: string) {
+    this.datapass.edit = { id, title, description };
+    const dialogRef = this.dialog.open(EditComponent, {
+      width: '500px',
+      hasBackdrop: true,
+      role: 'dialog',
+      height: '500px',
+    });
+    dialogRef.afterClosed().subscribe(() => this.downloadData());
   }
 
   openDialog() {
