@@ -3,7 +3,7 @@ WORKDIR /app
 
 COPY . .
 RUN npm install
-RUN ng build --configuration production
+RUN npm run build -c production
 
 FROM httpd:alpine3.15
 WORKDIR /usr/local/apache2/htdocs
