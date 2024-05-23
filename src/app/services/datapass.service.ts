@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DatapassService {
-  // url = 'http://147.50.231.83:3000/api';
-  url = 'http://127.0.0.1:3000/api';
+  url = environment.url;
   email = '';
   edit = { id: '', title: '', description: '' };
 }
